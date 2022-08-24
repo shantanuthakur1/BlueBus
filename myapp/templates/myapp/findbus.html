@@ -1,0 +1,67 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<style>
+    #find_form{
+        background-color: lightcyan;
+        padding: 20px ;
+        border: solid;
+        border-color: navy;
+    }
+</style>
+<div class="container">
+        <div class="row"  >
+            <div id="find_form"  class="col-sm-6 mx-auto" style="margin-top: 70px">
+                <h2>Find bus</h2>
+                <form action="{% url 'findbus' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">From*</label>
+                        <div class="col-10">
+                            <input name='source' class="form-control" type="text" id="example-email-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label">To*</label>
+                        <div class="col-10">
+                            <input name='destination' class="form-control" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-2 col-form-label" >Date*</label>
+                        <div class="col-10">
+                            <input name='date' class="form-control" type="date" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-4 col-form-label">Number of Seats</label>
+                        <div class="col-10">
+                            <input name='seats' class="form-control" type="number" min="1">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-4 col-form-label">Max price per seat</label>
+                        <div class="col-10">
+                            <input name='price' class="form-control" type="number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input" class="col-4 col-form-label">Max journey time</label>
+                        <div class="col-10">
+                                <input id='h' name='h' type='number' min='0'>
+                                <label for='h'>hrs</label>
+                                <input id='m' name='m' type='number' min='0' max='59'>
+                                <label for='m'>mins</label>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-success float-right">Find bus</button>
+                    </div>
+                    <p style="color:red; font-size:160%;">{{error}}</p>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

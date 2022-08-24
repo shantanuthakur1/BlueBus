@@ -1,0 +1,71 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<style>
+    #list_message{
+        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serifs;
+        font-weight: bold;
+        padding: 20px;
+    }
+</style>
+<div class="container">
+    <h3>{{msg}}</h3>
+    <span id = 'list_message'>
+        <h2>List of buses from {{source_r}} to {{dest_r}} on {{date_r}}</h2>
+    </span>
+    <table class="table table-striped" >
+        <thead style="background-color: blue;color: white;">
+        <td>BUS ID</td>
+        <td>FROM</td>
+        <td>TO</td>
+        <td>NAME</td>
+        <td>ROUTE DESCRIPTION</td>
+        <td>TOTAL SEATS</td>
+        <td>REMAINING SEATS</td>
+        <td>PRICE</td>
+        <td>DEPARTURE TIME</td>
+        <td>JOURNEY DURATION</td>
+        </thead>
+
+        {% for x in bus_list %}
+        <tr>
+            <td>{{x.bus_id }}</td>
+            <td>{{x.r_id.source}}</td>
+            <td>{{x.r_id.dest}}</td>
+            <td>{{x.bus_name}}</td>
+            <td>{{x.r_id.desc}}</td>
+            <td>{{x.nos}}</td>
+            <td>{{x.rem}}</td>
+            <td>{{x.price}}</td>
+            <td>{{x.time}}</td>
+            <td>{{x.r_id.duration}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+    <form action="{% url 'book' %}" method="post">
+        <h3>Choose bus to book</h3>
+        {% csrf_token %}
+        <div class="col-auto">
+            <label for="example-email-input" class="col-2 col-form-label">Bus ID</label>
+            <div class="col-5">
+                <input name='bus_id' class="form-control" type="number" id="example-email-input" required>
+            </div>
+        </div>
+        <div class="col-auto">
+            <label for="example-email-input" class="col-2 col-form-label">Number of seats</label>
+            <div class="col-5">
+                <input name='no_seats' class="form-control" type="number" min="1" required>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-success float-left">Book bus</button>
+        </div>
+        <p style="color:red; font-size:160%;">{{error}}</p>
+
+    </form>
+</div>
+</div>
+
+{% endblock %}

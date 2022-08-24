@@ -1,0 +1,40 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<style>
+    .welcome{
+        margin: auto; margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 100%;
+        height: 200px;
+        text-align:center;
+        font-size: 90px ; 
+        color: pink;
+        border: 3px solid pink;
+        padding: 10px;
+        background-color: blue;
+    }
+   
+    </style>
+<html>
+    <div class="welcome" id ="Welcome">
+        <center><p >Welcome {{uuser}}</></center>
+    </div>
+
+</html>
+<!-- <script>
+    window.setInterval(changeColor,2000);
+    function changeColor(){
+        var letters = '0123456789ABCDEF';
+        var bgcolor = '#';var bgcolor
+        for (var i = 0; i < 6; i++) {
+            bgcolor += letters[Math.floor(Math.random() * 16)];
+          }
+         
+          console.log(bgcolor)
+        document.getElementById("Welcome").style.backgroundColor=bgcolor
+    }
+</script> -->
+{% endblock %}
